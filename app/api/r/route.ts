@@ -64,9 +64,18 @@ export async function GET(request: NextRequest) {
     };
 
     // Log click to database (best-effort, don't block redirect)
-    insertClick(clickData).catch(err => {
-      console.error('Failed to log click, but continuing with redirect:', err);
-    });
+    console.log('Attempting to log click for:', clickData.client, clickData.service, clickData.click_id);
+    
+    try {
+      const success = await insertClick(clickData);
+      if (success) {
+        console.log('✅ Click logged successfully:', clickData.click_id);
+      } else {
+        console.log('❌ Click logging failed (but continuing):', clickData.click_id);
+      }
+    } catch (err) {
+      console.error('❌ Database error (but continuing with redirect):', err);
+    }
 
     // Build final redirect URL with click_id and original params
     const redirectURL = buildRedirectURL(params.dest, clickId, searchParams);

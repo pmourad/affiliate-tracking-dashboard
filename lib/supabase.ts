@@ -40,18 +40,29 @@ export function createServerClient() {
 // Insert a click record (best-effort - don't fail redirects)
 export async function insertClick(clickData: ClickRecord): Promise<boolean> {
   try {
+    console.log('🔄 Creating Supabase client...');
     const supabase = createServerClient();
-    const { error } = await supabase
+    
+    console.log('🔄 Inserting click data:', {
+      client: clickData.client,
+      service: clickData.service,
+      click_id: clickData.click_id
+    });
+    
+    const { data, error } = await supabase
       .from('clicks')
-      .insert(clickData);
+      .insert(clickData)
+      .select('id');
 
     if (error) {
-      console.error('Failed to insert click:', error);
+      console.error('❌ Supabase insert error:', error);
       return false;
     }
+    
+    console.log('✅ Click inserted with ID:', data?.[0]?.id);
     return true;
   } catch (err) {
-    console.error('Database connection error:', err);
+    console.error('❌ Database connection error:', err);
     return false;
   }
 }
