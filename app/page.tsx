@@ -3,7 +3,7 @@ export default function Home() {
   return (
     <div className="min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 items-center sm:items-start">
-        <h1 className="text-2xl font-bold">Harold's Smart Redirect</h1>
+        <h1 className="text-2xl font-bold">Harold&apos;s Smart Redirect</h1>
         <p className="text-lg text-gray-600">Track affiliate link clicks and redirect users</p>
         
         <div className="flex flex-col gap-4">

@@ -1,6 +1,5 @@
 // Admin dashboard - view click statistics with Basic Auth protection
-import { NextRequest } from 'next/server';
-import { requireAuth } from '@/lib/auth';
+import Link from 'next/link';
 import { createServerClient } from '@/lib/supabase';
 
 // This is a server component - runs on server, not browser
@@ -79,7 +78,7 @@ export default async function AdminPage({
         boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
       }}>
         <h1 style={{ color: '#333', marginBottom: '30px' }}>
-          📊 Harold's Smart Redirect - Admin Dashboard
+          📊 Harold&apos;s Smart Redirect - Admin Dashboard
         </h1>
 
         {/* Date Range Selector */}
@@ -228,7 +227,7 @@ export default async function AdminPage({
                       </tr>
                     </thead>
                     <tbody>
-                      {stats.clicksData.map((click: any, index: number) => (
+                      {stats.clicksData.map((click: Record<string, any>, index: number) => (
                         <tr key={click.id} style={{ 
                           background: index % 2 === 0 ? 'white' : '#f8f9fa',
                           borderBottom: '1px solid #dee2e6'
@@ -278,7 +277,7 @@ export default async function AdminPage({
         <div style={{ marginTop: '40px', padding: '20px', background: '#e9ecef', borderRadius: '4px' }}>
           <h3 style={{ marginBottom: '15px' }}>🔗 Quick Links</h3>
           <div style={{ display: 'flex', gap: '15px' }}>
-            <a href="/" style={{ color: '#007bff', textDecoration: 'none' }}>← Back to Home</a>
+            <Link href="/" style={{ color: '#007bff', textDecoration: 'none' }}>← Back to Home</Link>
             <a href="/builder" style={{ color: '#007bff', textDecoration: 'none' }}>Link Builder</a>
             <a href="/api/health" style={{ color: '#007bff', textDecoration: 'none' }}>Health Check</a>
           </div>

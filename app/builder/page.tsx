@@ -2,6 +2,7 @@
 
 // Link Builder - Create tracking URLs with a simple form
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function LinkBuilder() {
   const [formData, setFormData] = useState({
@@ -263,13 +264,13 @@ export default function LinkBuilder() {
                     <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
                       <p className="text-sm text-blue-800">
                         <strong>💡 Tip:</strong> This link will track clicks and redirect users to your destination. 
-                        Check the <a href="/admin" className="underline">Admin Dashboard</a> to see click statistics.
+                        Check the Admin Dashboard to see click statistics.
                       </p>
                     </div>
                   </div>
                 ) : (
                   <div className="text-center py-8">
-                    <p className="text-gray-500">Fill out the form and click "Generate" to create your tracking link</p>
+                    <p className="text-gray-500">Fill out the form and click &quot;Generate&quot; to create your tracking link</p>
                     <div className="mt-4 text-4xl">🔗</div>
                   </div>
                 )}
@@ -296,7 +297,7 @@ export default function LinkBuilder() {
           {/* Navigation */}
           <div className="mt-8 pt-6 border-t border-gray-200">
             <div className="flex justify-between">
-              <a href="/" className="text-blue-600 hover:text-blue-700">← Back to Home</a>
+              <Link href="/" className="text-blue-600 hover:text-blue-700">← Back to Home</Link>
               <a href="/admin" className="text-blue-600 hover:text-blue-700">View Statistics →</a>
             </div>
           </div>
