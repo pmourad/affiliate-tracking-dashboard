@@ -1,6 +1,6 @@
 // Admin dashboard - view click statistics with Basic Auth protection
 import Link from 'next/link';
-import { createServerClient } from '@/lib/supabase';
+import { createServerClient, type ClickRecord } from '@/lib/supabase';
 
 // This is a server component - runs on server, not browser
 export default async function AdminPage({
@@ -227,7 +227,7 @@ export default async function AdminPage({
                       </tr>
                     </thead>
                     <tbody>
-                      {stats.clicksData.map((click: Record<string, any>, index: number) => (
+                      {stats.clicksData.map((click: ClickRecord & { id: string; created_at: string }, index: number) => (
                         <tr key={click.id} style={{ 
                           background: index % 2 === 0 ? 'white' : '#f8f9fa',
                           borderBottom: '1px solid #dee2e6'
